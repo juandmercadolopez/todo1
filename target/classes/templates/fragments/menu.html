@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<div class="col-md-3 left_col" th:fragment="menu">
+		<div class="left_col scroll-view">
+			<div class="navbar nav_title" style="border: 0;">
+				<a th:href="@{/loginsuccess}" class="site_title"><i class="fa fa-paw"></i>
+					<span>Virtual Shops</span></a>
+			</div>
+
+			<div class="clearfix"></div>
+
+			<!-- menu profile quick info -->
+			<div class="profile clearfix">
+				<div class="profile_pic">
+					<img src="#" th:src="@{/production/images/img.jpg}" alt="..."
+						class="img-circle profile_img">
+				</div> 
+				<div class="profile_info" th:if="${session.rol == 'USER_ROLE'}">
+					<span>Bienvenido,</span>
+					<h2 th:text="${session.clienteModel.nombre}"></h2>
+				</div>
+				<div class="profile_info" th:if="${session.rol == 'ADMIN_ROLE'}">
+					<span>Bienvenido,</span>
+					<h2 th:text="${session.administradorModel.nombre}"></h2>
+				</div>
+			</div>
+			<!-- /menu profile quick info -->
+
+			<br />
+
+			<!-- sidebar menu -->
+			<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+				<div class="menu_section">
+					<h3 th:text="${session.rol}"></h3>
+					<ul class="nav side-menu">
+						<li th:if="${session.rol == 'ADMIN_ROLE'}"><a><i class="fa fa-clone"></i> Administración <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/categoria/categorias}">Listar, editar y eliminar categorias</a></li>
+								<li><a th:href="@{/categoria/crear_categoria}">Crear categoria</a></li>
+								<li><a th:href="@{/producto/productos}">Listar, editar y eliminar productos</a></li>
+								<li><a th:href="@{/producto/crear_producto}">Crear producto</a></li>
+							</ul></li>
+							
+						<li th:if="${session.rol == 'USER_ROLE'}"><a><i class="fa fa-clone"></i> Compras <span
+								class="fa fa-chevron-down"></span></a>
+							<ul class="nav child_menu">
+								<li><a th:href="@{/movimientos}">Movimientos</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /sidebar menu -->
+
+			<!-- /menu footer buttons -->
+			<div class="sidebar-footer hidden-small">
+				<a data-toggle="tooltip" data-placement="top" title="Configuración">
+					<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+				</a>
+				<form id="frm-menu-logout" th:action="@{/logout}" method="POST">
+					<a data-toggle="tooltip" data-placement="top" title="Cerrar sesión"
+					onclick="document.getElementById('frm-menu-logout').submit();"> <span class="glyphicon glyphicon-off"
+					aria-hidden="true"></span>
+				</a>
+				</form>
+				
+			</div>
+			<!-- /menu footer buttons -->
+		</div>
+	</div>
+</body>
+</html>

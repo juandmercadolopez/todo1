@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/todo1?useSSL=false
+    username: root
+    password: jdml1989
+    
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect 
+  #propiedad spring.thymeleaf.cache se debe colocar en false para deshabilitar la cache y poder aplicar cambien en caliente con spring loaded
+  thymeleaf:
+      cache: false
+        
+  
+    

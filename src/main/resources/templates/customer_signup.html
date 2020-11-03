@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Virtual Shops</title>
+
+<!-- Bootstrap -->
+<link href="#"
+	th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"
+	rel="stylesheet">
+<!-- Font Awesome -->
+<link href="#"
+	th:href="@{/vendors/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet">
+<!-- NProgress -->
+<link href="#" th:href="@{/vendors/nprogress/nprogress.css}"
+	rel="stylesheet">
+<!-- Animate.css -->
+<link href="#" th:href="@{/vendors/animate.css/animate.min.css}"
+	rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="#" th:href="@{/build/css/custom.min.css}" rel="stylesheet">
+
+</head>
+
+<body class="login">
+	<div>
+		<div class="login_wrapper">
+			<div class="animate form login_form">
+				<section class="login_content">
+					<form method="POST" th:action="@{/registro/cliente}" th:object="${usuarioCliente}"
+						enctype="utf8">
+						<h1>Crear cuenta</h1>
+						<div class="form-group">
+							<input type="text" class="form-control"
+								th:field="*{documento}" placeholder="Documento de identidad"
+								required="required" />
+						</div>
+
+						<div class="form-group">
+							<select class="form-control" required="required" th:field="*{tipoDocumento}">
+								<option th:value="'CC'" th:text="'Cédula de Ciudadanía'" th:selected="selected"></option>
+								<option th:value="'CE'" th:text="'Cédula de Extranjería'"></option>
+								<option th:value="'PAS'" th:text="'Pasaporte'"></option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Nombre"
+								required="required" th:field="*{nombre}" />
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Apellidos"
+								required="required" th:field="*{apellidos}" />
+						</div>
+
+						<div class="form-group">
+							<input type="date" class="form-control"
+								placeholder="Fecha de nacimiento" required="required"
+								th:field="*{fechaNacimiento}" />
+						</div>
+
+						<div class="form-group">
+							<input type="email" class="form-control"
+								placeholder="Correo electrónico" required="required"
+								th:field="*{correoElectronico}" />
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Usuario"
+								required="required" th:field="*{usuario}" />
+						</div>
+
+						<div class="form-group">
+							<input type="password" class="form-control"
+								placeholder="Password" required="required" th:field="*{password}" />
+						</div>
+
+						<div class="form-group">
+							<input type="password" class="form-control"
+								placeholder="confirme password" required="required"
+								th:field="*{passwordConfirm}" />
+						</div>
+
+						<div th:if="${registro == 1}" class="alert alert-success"
+							role="alert">Cliente agregado correctamente!</div>
+						<div th:if="${registro == 0}" class="alert alert-danger"
+							role="alert">No fue posible registrar el usuario, intente nuevamente</div>
+						<div th:if="${registro == 2}" class="alert alert-danger"
+							role="alert">Error en el proceso de registro!</div>
+
+						<div>
+							<button type="submit" class="btn btn-primary">Registrar</button>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="separator">
+							<p class="change_link">
+								Already a member ? <a th:href="@{/login}" class="to_register">
+									Log in </a>
+							</p>
+
+							<div class="clearfix"></div>
+							<br />
+
+							<div>
+								<h1>
+									<i class="fa fa-paw"></i> Virtual Shops
+								</h1>
+								<p>©2016 All Rights Reserved</p>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+
+			<div id="register" class="animate form registration_form"></div>
+		</div>
+	</div>
+</body>
+</html>
